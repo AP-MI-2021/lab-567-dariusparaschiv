@@ -58,14 +58,3 @@ def modifica_obiect(id, nume, descriere, pret_achizitie, locatie, lista):
             obiect_nou = creeaza_obiect(id, nume, descriere, pret_achizitie, locatie)
             lista_noua.append(obiect_nou)
     return lista_noua
-
-
-
-
-
-
-
-
-
-
-

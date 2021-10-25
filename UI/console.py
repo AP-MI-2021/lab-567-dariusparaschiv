@@ -1,4 +1,3 @@
-from Domanin.inventar import to_string
 from Logic.CRUD import adauga_obiect, sterge_obiect, modifica_obiect
 from Logic.functionalitati import concatenare
 
@@ -37,7 +36,7 @@ def ui_modifica_obiect(lista):
 
 def show_all(lista):
     for obiect in lista:
-        print(to_string(obiect))
+        print(obiect)
 
 
 def ui_concatenare(lista):

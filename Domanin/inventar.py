@@ -1,63 +1,36 @@
 def creeaza_obiect(id, nume, descriere, pret_achizitie, locatie):
     """
-    creeaza un dictionar ce reprezinta un invetar
+    creeaza o lista ce reprezinta un invetar
     :param id: string
     :param nume: string
     :param descriere: string
     :param pret_achizitie: float
     :param locatie: string
-    :return: dictionarul ce contine inventarul
+    :return: lista ce contine inventarul
     """
-    return{
-        "id": id,
-        "nume": nume,
-        "descriere": descriere,
-        "pret": pret_achizitie,
-        "locatie": locatie
-    }
+    return [id, nume, descriere, pret_achizitie, locatie]
 
 
-def get_id(obiect):
+def get_id(lst):
     """
     returneaza id-ul
-    :param obiect: dictionar ce contine un obiect
+    :param lst: lista care contine datele despre obiect
     :return: id-ul obiectului
     """
-    return obiect["id"]
+    return lst[0]
 
 
-def get_nume(obiect):
-    return obiect["nume"]
+def get_nume(lst):
+    return lst[1]
 
 
-def get_descriere(obiect):
-    return obiect["descriere"]
+def get_descriere(lst):
+    return lst[2]
 
 
-def get_pret(obiect):
-    return obiect["pret"]
+def get_pret(lst):
+    return lst[3]
 
 
-def get_locatie(obiect):
-    return obiect["locatie"]
-
-
-def to_string(obiect):
-    return "id: {}, nume: {}, descriere: {}, pret: {}, locatie: {}".format(
-        get_id(obiect),
-        get_nume(obiect),
-        get_descriere(obiect),
-        get_pret(obiect),
-        get_locatie(obiect)
-    )
-
-
-
-
-
-
-
-
-
-
-
+def get_locatie(lst):
+    return lst[4]
