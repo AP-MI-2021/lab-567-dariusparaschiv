@@ -64,6 +64,14 @@ def test_modifica_obiect():
     assert get_locatie(obiect_neupdatat) == "AA11"
 
 
+def test_get_by_id():
+    lista = []
+    lista = adauga_obiect("1", "dosar", "alb si subtire", 5.50, "AA11", lista)
+    lista = adauga_obiect("2", "plic", "negru", 2.50, "BA12", lista)
+
+    assert get_by_id("1", lista) == ["1", "dosar", "alb si subtire", 5.50, "AA11"]
+    assert get_by_id("3", lista) is None
+
 
 
 

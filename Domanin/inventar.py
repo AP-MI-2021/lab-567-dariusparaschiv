@@ -34,3 +34,13 @@ def get_pret(lst):
 
 def get_locatie(lst):
     return lst[4]
+
+
+def get_str(lst):
+    return "id: {}, nume: {}, descriere: {}, pret: {}, locatie: {}".format(
+        get_id(lst),
+        get_nume(lst),
+        get_descriere(lst),
+        get_pret(lst),
+        get_locatie(lst)
+    )

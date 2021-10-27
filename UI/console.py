@@ -1,5 +1,6 @@
 from Logic.CRUD import adauga_obiect, sterge_obiect, modifica_obiect
 from Logic.functionalitati import concatenare
+from Domanin.inventar import get_str
 
 
 def print_menu():
@@ -36,7 +37,7 @@ def ui_modifica_obiect(lista):
 
 def show_all(lista):
     for obiect in lista:
-        print(obiect)
+        print(get_str(obiect))
 
 
 def ui_concatenare(lista):
