@@ -24,10 +24,12 @@ def test_sterge_obiect():
     assert get_by_id("1", lista) is None
     assert get_by_id("2", lista) is not None
 
-    lista = sterge_obiect("4", lista)
-
-    assert len(lista) == 1
-    assert get_by_id("2", lista) is not None
+    try:
+        lista = sterge_obiect("4", lista)
+        assert False
+    except ValueError:
+        assert len(lista) == 1
+        assert get_by_id("2", lista) is not None
 
 
 def test_modifica_obiect():
@@ -54,7 +56,6 @@ def test_modifica_obiect():
 
     lista = []
     lista = adauga_obiect("1", "dosar", "alb si subtire", 5.50, "AA11", lista)
-    lista = modifica_obiect("3", "dosar", "alb si subtire", 5.50, "AA11", lista)
 
     obiect_neupdatat = get_by_id("1", lista)
     assert get_id(obiect_neupdatat) == "1"
@@ -70,7 +71,11 @@ def test_get_by_id():
     lista = adauga_obiect("2", "plic", "negru", 2.50, "BA12", lista)
 
     assert get_by_id("1", lista) == ["1", "dosar", "alb si subtire", 5.50, "AA11"]
-    assert get_by_id("3", lista) is None
+    try:
+        adauga_obiect("4", "plic", "verde", 22.50, "BA12", lista)
+    except ValueError:
+        assert get_by_id("3", lista) is None
+        assert get_by_id("4", lista) is not None
 
 
 

@@ -6,8 +6,10 @@ from UI.console import run_menu
 def main():
     run_all_tests()
     lista = []
-    lista = adauga_obiect("1", "dosar", "alb si subitre", 5.50, "AA11", lista)
-    lista = adauga_obiect("3", "dosar", "alb si gros", 15.00, "AA13", lista)
+    lista = adauga_obiect("4", "dosar", "alb si subitre", 15.50, "AA11", lista)
+    lista = adauga_obiect("2", "dosar", "alb si gros", 15.00, "AA13", lista)
+    lista = adauga_obiect("3", "carte", "alba", 23.7, "AA13", lista)
+
     run_menu(lista)
 
 
