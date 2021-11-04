@@ -8,6 +8,8 @@ def command_line_console(lis, lista):
         for x in lis_string:
             t = x.split(",")
             if t[0] == "add":
+                if len(t) != 6:
+                    raise ValueError("Nu ati respectat nr de parametri")
                 lista = adauga_obiect((t[1]), (t[2]), (t[3]), (t[4]), (t[5]), lista)
             if t[0] == "showall":
                 show_all(lista)
@@ -16,6 +18,7 @@ def command_line_console(lis, lista):
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
+    return lista
 
 
 def print_menu_nou():
@@ -29,10 +32,4 @@ def run_menu_nou(lista):
     while True:
         print_menu_nou()
         lis = input()
-        command_line_console(lis, lista)
-
-
-
-
-
-
+        lista = command_line_console(lis, lista)
