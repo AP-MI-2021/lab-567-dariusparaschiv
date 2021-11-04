@@ -76,7 +76,3 @@ def test_get_by_id():
     except ValueError:
         assert get_by_id("3", lista) is None
         assert get_by_id("4", lista) is not None
-
-
-
-

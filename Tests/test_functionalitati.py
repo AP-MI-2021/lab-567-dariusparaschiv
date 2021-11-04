@@ -58,7 +58,7 @@ def test_afisare_suma_pret_locatie():
     lista = []
     lista = adauga_obiect("1", "dosar", "alb si subtire", 29.0, "AA11", lista)
     lista = adauga_obiect("2", "enciclopedie", "rosie", 30.0, "RA13", lista)
-    lista = adauga_obiect("3", "carte", "alba", 20, "RA13", lista)
+    lista = adauga_obiect("3", "carte", "alba", 20.0, "RA13", lista)
 
     rezultat = afisare_suma_pret_locatie(lista)
 

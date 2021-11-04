@@ -14,6 +14,8 @@ def adauga_obiect(id, nume, descriere, pret_achizitie, locatie, lista):
     """
     if get_by_id(id, lista) is not None:
         raise ValueError("Id-ul exista deja")
+    if type(pret_achizitie) != float:
+        raise ValueError("Pretul trebuie sa fie float")
     obiect = creeaza_obiect(id, nume, descriere, pret_achizitie, locatie)
     return lista + [obiect]
 
