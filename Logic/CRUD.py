@@ -58,6 +58,8 @@ def modifica_obiect(id, nume, descriere, pret_achizitie, locatie, lista):
     """
     if get_by_id(id, lista) is None:
         raise ValueError("Obiectul cu id-ul dat nu exista")
+    if type(pret_achizitie) != float:
+        raise ValueError("Pretul trebuie sa fie float")
     lista_noua = []
     for obiect in lista:
         if get_id(obiect) != id:

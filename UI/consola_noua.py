@@ -3,6 +3,10 @@ from UI.console import show_all
 
 
 def command_line_console(lis, lista):
+    """
+    - lis_string: retine comanda cu parametri
+    - t: retine pe rand numele comenzii, apoi fiecare parametru
+    """
     lis_string = lis.split(";")
     try:
         for x in lis_string:
@@ -10,7 +14,7 @@ def command_line_console(lis, lista):
             if t[0] == "add":
                 if len(t) != 6:
                     raise ValueError("Nu ati respectat nr de parametri")
-                lista = adauga_obiect((t[1]), (t[2]), (t[3]), (t[4]), (t[5]), lista)
+                lista = adauga_obiect((t[1]), (t[2]), (t[3]), float(t[4]), (t[5]), lista)
             if t[0] == "showall":
                 show_all(lista)
             if t[0] == "delete":
