@@ -93,9 +93,6 @@ def ordonare_pret(lista):
     :return: lista cu obiectele ordonate
     """
     return sorted(lista, key=lambda obiect: float(get_pret(obiect)))
-    # intrebare 1. de ce trebuie sa specific type la get_pret
-    # intrebare 2. unde verifica ca datele sa fie bune?
-    # adica daca la pret utilizatorul adauga un string, sa afisam eroare
 
 
 def afisare_suma_pret_locatie(lista):

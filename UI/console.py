@@ -17,39 +17,45 @@ def print_menu():
     print("x. Iesire")
 
 
-def ui_adauga_obiect(lista, undo_list):
+def ui_adauga_obiect(lista, undo_list, redo_list):
     try:
         id = input("Dati id-ul: ")
         nume = input("Dati un nume: ")
         descriere = input("Dati o descriere: ")
         pret_achizitie = input("Dati un pret: ")
         locatie = input("Dati o locatie: ")
+        rezultat = adauga_obiect(id, nume, descriere, pret_achizitie, locatie, lista)
         undo_list.append(lista)
-        return adauga_obiect(id, nume, descriere, pret_achizitie, locatie, lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_sterge_obiect(lista, undo_list):
+def ui_sterge_obiect(lista, undo_list, redo_list):
     try:
         id = input("dati id-ul obiectului pt a-l sterge ")
+        rezultat = sterge_obiect(id, lista)
         undo_list.append(lista)
-        return sterge_obiect(id, lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_modifica_obiect(lista, undo_list):
+def ui_modifica_obiect(lista, undo_list, redo_list):
     try:
         id = input("Dati noul id: ")
         nume = input("Dati un nou nume: ")
         descriere = input("Dati o noua descriere: ")
         pret_achizitie = input("Dati un pret nou: ")
         locatie = input("Dati o locatie noua: ")
+        rezultat = modifica_obiect(id, nume, descriere, pret_achizitie, locatie, lista)
         undo_list.append(lista)
-        return modifica_obiect(id, nume, descriere, pret_achizitie, locatie, lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -60,23 +66,27 @@ def show_all(lista):
         print(get_str(obiect))
 
 
-def ui_concatenare(lista, undo_list):
+def ui_concatenare(lista, undo_list, redo_list):
     try:
         cuv = input("dati un string pentru a-l concatena: ")
         valoare = float(input("dati o valoare pentru comparare: "))
+        rezultat = concatenare(cuv, valoare, lista)
         undo_list.append(lista)
-        return concatenare(cuv, valoare, lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
 
-def ui_mutare(lista, undo_list):
+def ui_mutare(lista, undo_list, redo_list):
     try:
         locatie_initiala = input("dati o locatie din care sa se mute obiectele: ")
         locatie_finala = input("dati o locatie in care sa se mute obiectele: ")
+        rezultat = mutare(locatie_initiala, locatie_finala, lista)
         undo_list.append(lista)
-        return mutare(locatie_initiala, locatie_finala, lista)
+        redo_list.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -88,8 +98,9 @@ def ui_pret_maxim_per_locatie(lista):
         print("Locatia {} are pretul maxim {}".format(locatie, rezultat[locatie]))
 
 
-def ui_ordonare_pret(lista, undo_list):
+def ui_ordonare_pret(lista, undo_list, redo_list):
     undo_list.append(lista)
+    redo_list.clear()
     show_all(ordonare_pret(lista))
 
 
@@ -101,32 +112,40 @@ def ui_afisare_suma_pret_locatie(lista):
 
 def run_menu(lista):
     undo_list = []
+    redo_list = []
     while True:
         print_menu()
         optiune = input("Alegeti o optiune: ")
         if optiune == "1":
-            lista = ui_adauga_obiect(lista, undo_list)
+            lista = ui_adauga_obiect(lista, undo_list, redo_list)
         elif optiune == "2":
-            lista = ui_sterge_obiect(lista, undo_list)
+            lista = ui_sterge_obiect(lista, undo_list, redo_list)
         elif optiune == "3":
-            lista = ui_modifica_obiect(lista, undo_list)
+            lista = ui_modifica_obiect(lista, undo_list, redo_list)
         elif optiune == "4":
-            lista = ui_concatenare(lista, undo_list)
+            lista = ui_concatenare(lista, undo_list, redo_list)
         elif optiune == "5":
-            lista = ui_mutare(lista, undo_list)
+            lista = ui_mutare(lista, undo_list, redo_list)
         elif optiune == "6":
             ui_pret_maxim_per_locatie(lista)
         elif optiune == "7":
-            ui_ordonare_pret(lista, undo_list)
+            ui_ordonare_pret(lista, undo_list, redo_list)
         elif optiune == "8":
             ui_afisare_suma_pret_locatie(lista)
         elif optiune == "a":
             show_all(lista)
         elif optiune == "u":
             if len(undo_list) > 0:
+                redo_list.append(lista)
                 lista = undo_list.pop()
             else:
                 print("Nu se poate face undo")
+        elif optiune == "r":
+            if len(redo_list) > 0:
+                undo_list.append(lista)
+                lista = redo_list.pop()
+            else:
+                print("Nu se poate face redo!")
         elif optiune == "x":
             break
         else:
